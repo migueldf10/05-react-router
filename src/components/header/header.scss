@@ -1,0 +1,24 @@
+.header {
+	ul {
+		display: flex;
+		flex-direction: row;
+		justify-content: flex-end;
+		padding: 20px;
+	}
+	li {
+		display: inline-block;
+		margin-left: 20px;
+	}
+}
+
+.search-bar {
+	display: flex;
+	align-items: center;
+	width: 100%;
+	justify-content: space-around;
+	background-color: lightcoral;
+	padding: 100px 0;
+	* {
+		font-size: 2rem;
+	}
+}

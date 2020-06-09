@@ -1,0 +1,16 @@
+.movie-grid {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	margin: 0;
+	padding: 0;
+	justify-content: space-around;
+	&-item {
+		margin: 32px 16px 0;
+		list-style: none;
+		padding: 16px;
+		background-color: lightblue;
+		max-width: 300px;
+		border-radius: 10px;
+	}
+}
