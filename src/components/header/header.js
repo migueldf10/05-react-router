@@ -11,12 +11,6 @@ export default function Header() {
 						Go to home
             </Link>
 				</li>
-
-				<li>
-					<Link to='/movies' >
-						Go to movies
-            </Link>
-				</li>
 			</ul>
 		</div>
 	)

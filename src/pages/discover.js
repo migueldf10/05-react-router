@@ -1,16 +1,15 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import MovieGridItem from '../components/movieGridItem/movieGridItem'
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 
 
 export default function MoviesPage() {
 	const route_parameters = useParams();
 	const [movies, setMovies] = useState(useParams)
 	const [inputTerm, setInputTerm] = useState(route_parameters.searchtext)
-	const [searchTerm, setSearchTerm] = useState(route_parameters.searchtext)
-	const URL = `https://www.omdbapi.com/?s=${searchTerm}&apikey=5bbb8325`
-	// const history = useHistory(); This is how it's explained, but I don't get it
+	const URL = `https://www.omdbapi.com/?s=${route_parameters.searchtext}&apikey=5bbb8325`
+	const history = useHistory();
 
 	// version with fetch then
 
@@ -49,6 +48,12 @@ export default function MoviesPage() {
 
 	// Version with axios
 
+	function updateSearch(event) {
+		setInputTerm(event.target.value)
+	}
+	function performSearch(event) {
+		history.push(`/discover/${inputTerm}`)
+	}
 
 	useEffect(() => {
 		async function fetchOmdb() {
@@ -58,19 +63,13 @@ export default function MoviesPage() {
 			setMovies(data.data.Search)
 		}
 		fetchOmdb()
-	}, [searchTerm, URL])
+	}, [URL, history])
 
-	function updateSearch(event) {
-		setInputTerm(event.target.value)
-	}
-	function performSearch(event) {
-		setSearchTerm(inputTerm)
-	}
 
 	return (
 		<div>
 			<div className='search-bar'>
-				<input onChange={updateSearch} placeholder={searchTerm} />
+				<input onChange={updateSearch} placeholder={inputTerm} />
 				<button onClick={performSearch}>Search</button>
 			</div>
 			<ul className='movie-grid'>
